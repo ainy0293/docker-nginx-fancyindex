@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ $(id -u) != "0" ]; then
-	echo "Error: You must be root to run this script, please use root to install mysql! "
+	echo "Error: You must be root to run this script, please use root to install nginx!"
 	echo " or use sudo command!!"
 	exit 1
 fi
@@ -19,7 +19,7 @@ deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe
 EOF
 
 apt-get -y update
-apt-get -y install gcc g++ openssl libssl-dev libncurses5 libncurses5-dev make wget
+apt-get -y install gcc g++ openssl libssl-dev make wget
 sleep 2
 # check file
 if [ ! -f pcre-8.39.tar.gz ]; then
