@@ -22,10 +22,10 @@ apt-get -y update
 apt-get -y install gcc g++ openssl libssl-dev make wget
 sleep 2
 # check file
-if [ ! -f pcre-8.39.tar.gz ]; then
-	echo "File pcre-8.39.tar.gz does not exist! "
-	echo "Begin download pcre-8.39.tar.gz"
-	wget -c ftp://ftp.csx.cam.ac.uk/pub/software/programming/pcre/pcre-8.39.tar.gz
+if [ ! -f pcre-8.43.tar.gz ]; then
+	echo "File pcre-8.43.tar.gz does not exist! "
+	echo "Begin download pcre-8.43.tar.gz"
+	wget -c ftp://ftp.pcre.org/pub/pcre/pcre-8.43.tar.gz
 fi
 if [ ! -f nginx-1.10.1.tar.gz ]; then
 	echo "File nginx-1.10.1.tar.gz does not exist! "
@@ -36,12 +36,12 @@ fi
 #	echo "ngx-fancyindex does not exist! "
 #	echo "Begin download ngx-fancyindex "
 #fi	
-tar -zxvf pcre-8.39.tar.gz -C /usr/local/src
+tar -zxvf pcre-8.43.tar.gz -C /usr/local/src
 tar -zxvf nginx-1.10.1.tar.gz -C /usr/local/src
 tar -zxvf ngx-fancyindex.tar.gz -C /usr/local/src
 cd /usr/local/src/nginx-1.10.1
 useradd -M -s /sbin/nologin nginx
-./configure --user=nginx --group=nginx --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module --with-pcre=/usr/local/src/pcre-8.39 --add-module=/usr/local/src/ngx-fancyindex
+./configure --user=nginx --group=nginx --prefix=/usr/local/nginx --with-http_stub_status_module --with-http_ssl_module --with-http_gzip_static_module --with-http_sub_module --with-pcre=/usr/local/src/pcre-8.43 --add-module=/usr/local/src/ngx-fancyindex
 make
 make install
 sleep 1
@@ -51,5 +51,5 @@ cp nginx.conf fastcgi.conf /usr/local/nginx/conf
 rm -rf /usr/local/src/*
 apt-get -y clean
 apt-get -y autoclean
-rm -f pcre-8.39.tar.gz nginx-1.10.1.tar.gz ngx-fancyindex.tar.gz
+rm -f pcre-8.43.tar.gz nginx-1.10.1.tar.gz ngx-fancyindex.tar.gz
 #/usr/local/nginx/sbin/nginx -t -c /usr/local/nginx/conf/nginx.conf
